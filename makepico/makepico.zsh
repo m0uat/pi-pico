@@ -191,7 +191,7 @@ write_header() {
         echo " * @version     ${proj_version}"
         echo " * @author      ${users_name}"
         echo " * @copyright   $(date +'%Y')"
-        echo " * @licence     MIT"
+        echo " * @licence     "
         echo " *"
         echo " */"
     } > "$2"
@@ -214,7 +214,12 @@ make_cmake_file() {
     {
         echo 'cmake_minimum_required(VERSION 3.14)'
         echo 'include(pico_sdk_import.cmake)'
-        echo "project(${project_name} VERSION ${proj_version})"
+        echo
+        echo "set (CMAKE_C_STANDARD 11)"
+        echo "set (CMAKE_CXX_STANDARD 17)"
+        echo
+        echo "project(${project_name} C CXX ASM)"
+        echo
         echo "add_executable(${project_name}"
         echo "               main.${file_ext})"
         echo
